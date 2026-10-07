@@ -1,0 +1,22 @@
+{
+    "name": "Fase 1 - PHP moderno",
+    "image": "mcr.microsoft.com/devcontainers/php:8.4",
+    "containerEnv": {
+        "XDEBUG_CONFIG": "log_level=0"
+    },
+    "postCreateCommand": "composer install && php bin/verificar-ambiente.php",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "bmewburn.vscode-intelephense-client",
+                "xdebug.php-debug"
+            ],
+            "settings": {
+                "php.validate.executablePath": "/usr/local/bin/php"
+            }
+        },
+        "codespaces": {
+            "openFiles": ["README.md"]
+        }
+    }
+}

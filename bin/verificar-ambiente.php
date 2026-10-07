@@ -21,7 +21,6 @@ $extensoes = [
     'mbstring' => 'usada nos exercícios (mb_strlen, mb_strtoupper)',
     'openssl' => 'o Composer precisa para baixar pacotes',
     'curl' => 'acelera downloads do Composer',
-    'zip' => 'o Composer precisa para extrair pacotes',
     'dom' => 'o PHPUnit precisa',
     'xml' => 'o PHPUnit precisa',
     'tokenizer' => 'o PHPUnit precisa',
@@ -32,6 +31,12 @@ foreach ($extensoes as $ext => $motivo) {
     linha($carregada, "extensão $ext ($motivo)", "Ative 'extension=$ext' no php.ini: " . (php_ini_loaded_file() ?: 'nenhum php.ini carregado!'));
     $ok = $ok && $carregada;
 }
+
+// O Composer extrai pacotes com a extensão zip OU com o programa unzip.
+$temUnzip = trim((string) shell_exec(PHP_OS_FAMILY === 'Windows' ? 'where unzip 2>NUL' : 'command -v unzip 2>/dev/null')) !== '';
+$zip = extension_loaded('zip') || $temUnzip;
+linha($zip, 'extensão zip ou programa unzip (o Composer precisa para extrair pacotes)', "Ative 'extension=zip' no php.ini: " . (php_ini_loaded_file() ?: 'nenhum php.ini carregado!'));
+$ok = $ok && $zip;
 
 $vendor = is_file(__DIR__ . '/../vendor/autoload.php');
 linha($vendor, 'dependências instaladas (pasta vendor/)', 'Rode: composer install');

@@ -3,13 +3,25 @@
 Cada exercício tem o enunciado no arquivo em `src/` e os testes em `tests/`.
 Substitua os `throw new \LogicException('TODO')` até os testes ficarem verdes.
 
-Usando Windows? Siga antes o [INSTALACAO-WINDOWS.md](INSTALACAO-WINDOWS.md).
+## Como começar
+
+**Opção A — no navegador, sem instalar nada (GitHub Codespaces):**
+no topo deste repositório, clique em **Code → Codespaces → Create codespace**.
+Em 1–2 minutos abre um VS Code com PHP, Composer e as dependências prontos.
+Quando o terminal mostrar "Tudo certo!", é só começar.
+
+**Opção B — no seu computador:** no Windows, siga o [INSTALACAO-WINDOWS.md](INSTALACAO-WINDOWS.md). Depois:
 
 ```bash
 composer install                       # só na primeira vez
 php bin/verificar-ambiente.php         # confere PHP, extensões e dependências
-vendor/bin/phpunit                     # roda tudo
-vendor/bin/phpunit --filter Tipos      # roda um exercício
+```
+
+## Rodando os testes
+
+```bash
+composer test                          # roda tudo
+composer test -- --filter Ex01         # roda só o exercício 1
 ```
 
 ## Ordem
